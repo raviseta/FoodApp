@@ -4,7 +4,7 @@ import useResults from "./Hooks/useResults";
 import ResultsList from "./Components/ResultsList";
 import SearchBar from "./Components/SearchBar";
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
 
@@ -26,7 +26,7 @@ const SearchScreen = () => {
         onTermSubmit={() => searchApi(term)}
       />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
-      <Text>We have found {results.length} results</Text>
+
       <ResultsList results={filterResultsByPrice("$")} title="Cost Effective" />
       <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
       <ResultsList results={filterResultsByPrice("$$$")} title="Big Spender" />
